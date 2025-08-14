@@ -34,35 +34,6 @@ document.addEventListener('DOMContentLoaded', function() {
             const message = document.getElementById('message').value;
 
             if (name && email && message) {
-                // Dalam kasus nyata, di sini Anda akan mengirim data ke server (misal: menggunakan fetch API)
-                // fetch('your_server_endpoint.php', {
-                //     method: 'POST',
-                //     headers: {
-                //         'Content-Type': 'application/json',
-                //     },
-                //     body: JSON.stringify({ name, email, message }),
-                // })
-                // .then(response => response.json())
-                // .then(data => {
-                //     if (data.success) {
-                //         formMessage.textContent = 'Pesan Anda berhasil dikirim! Kami akan segera menghubungi Anda.';
-                //         formMessage.classList.remove('error');
-                //         formMessage.classList.add('success');
-                //         contactForm.reset();
-                //     } else {
-                //         formMessage.textContent = 'Terjadi kesalahan saat mengirim pesan. Silakan coba lagi.';
-                //         formMessage.classList.remove('success');
-                //         formMessage.classList.add('error');
-                //     }
-                // })
-                // .catch(error => {
-                //     console.error('Error:', error);
-                //     formMessage.textContent = 'Terjadi kesalahan jaringan. Silakan coba lagi.';
-                //     formMessage.classList.remove('success');
-                //     formMessage.classList.add('error');
-                // });
-
-                // Untuk demo, langsung tampilkan pesan sukses
                 formMessage.textContent = 'Pesan Anda berhasil dikirim! Kami akan segera menghubungi Anda.';
                 formMessage.classList.remove('error');
                 formMessage.classList.add('success');
@@ -81,4 +52,40 @@ document.addEventListener('DOMContentLoaded', function() {
             }, 5000);
         });
     }
+
+    // New code for light/dark mode toggle
+    const themeToggle = document.getElementById('theme-toggle');
+    const body = document.body;
+
+    // Function to set the theme
+    const setTheme = (theme) => {
+        if (theme === 'dark') {
+            body.classList.add('dark-mode');
+            themeToggle.innerHTML = '<i class="fas fa-sun"></i>';
+        } else {
+            body.classList.remove('dark-mode');
+            themeToggle.innerHTML = '<i class="fas fa-moon"></i>';
+        }
+    };
+
+    // Check for saved theme in localStorage
+    const savedTheme = localStorage.getItem('theme');
+
+    if (savedTheme) {
+        setTheme(savedTheme);
+    } else {
+        // Default theme is 'light' if no preference is saved
+        setTheme('light');
+    }
+
+    // Event listener for the toggle button
+    themeToggle.addEventListener('click', () => {
+        if (body.classList.contains('dark-mode')) {
+            setTheme('light');
+            localStorage.setItem('theme', 'light');
+        } else {
+            setTheme('dark');
+            localStorage.setItem('theme', 'dark');
+        }
+    });
 });

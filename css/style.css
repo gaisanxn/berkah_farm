@@ -9,6 +9,40 @@
     --bg-dark: #34495e;
     --border-color: #ddd;
     --font-family: 'Poppins', sans-serif;
+    --body-bg: #fff;
+    --card-bg: #fff;
+    --footer-bg: #34495e;
+    --nav-bg: #fff;
+    --nav-link-color: var(--dark-text);
+    --heading-color: var(--dark-text);
+    --paragraph-color: #555;
+    --toggle-color: #f4f4f4;
+    --toggle-bg: #333;
+}
+
+/* Dark Mode Variables */
+body.dark-mode {
+    --body-bg: #1a1a1a;
+    --card-bg: #2b2b2b;
+    --footer-bg: #2b2b2b;
+    --nav-bg: #2b2b2b;
+    --nav-link-color: var(--light-text);
+    --heading-color: var(--light-text);
+    --paragraph-color: #ccc;
+    --border-color: #444;
+    --dark-text: #f4f4f4; /* Override for specific elements */
+    --toggle-color: #333;
+    --toggle-bg: #f4f4f4;
+}
+
+/* Dark mode specific styling for .bg-light class */
+body.dark-mode .bg-light {
+    background-color: var(--body-bg); /* Ubah warna latar belakang */
+}
+
+/* Dark mode specific heading color for the section */
+body.dark-mode .bg-light h2 {
+    color: var(--heading-color);
 }
 
 * {
@@ -20,8 +54,9 @@
 body {
     font-family: var(--font-family);
     line-height: 1.6;
-    color: var(--dark-text);
-    background-color: #fff;
+    color: var(--paragraph-color);
+    background-color: var(--body-bg);
+    transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 .container {
@@ -51,7 +86,7 @@ img {
 }
 
 h1, h2, h3 {
-    color: var(--dark-text);
+    color: var(--heading-color);
     margin-bottom: 1rem;
     font-weight: 600;
 }
@@ -122,12 +157,13 @@ h3 {
 
 /* Header */
 header {
-    background-color: #fff;
+    background-color: var(--nav-bg);
     padding: 15px 0;
     box-shadow: 0 2px 5px rgba(0,0,0,0.1);
     position: sticky;
     top: 0;
     z-index: 1000;
+    transition: background-color 0.3s ease;
 }
 
 header .container {
@@ -141,12 +177,18 @@ header .container {
     align-items: center;
     font-size: 1.8em;
     font-weight: 700;
-    color: var(--dark-text);
+    color: var(--heading-color);
 }
 
 .logo img {
     height: 50px; /* Adjust as needed */
     margin-right: 10px;
+}
+
+.main-nav {
+    display: flex;
+    align-items: center;
+    gap: 20px;
 }
 
 .main-nav .nav-list {
@@ -155,7 +197,7 @@ header .container {
 }
 
 .main-nav .nav-list li a {
-    color: var(--dark-text);
+    color: var(--nav-link-color);
     font-weight: 500;
     padding: 5px 0;
     position: relative;
@@ -183,7 +225,22 @@ header .container {
     background: none;
     border: none;
     cursor: pointer;
-    color: var(--dark-text);
+    color: var(--nav-link-color);
+}
+
+/* Theme Toggle Button */
+.theme-toggle {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 1.5em;
+    color: var(--nav-link-color);
+    transition: color 0.3s ease;
+    padding: 5px;
+}
+
+.theme-toggle:hover {
+    color: var(--primary-color);
 }
 
 /* Hero Section */
@@ -233,14 +290,14 @@ header .container {
 }
 
 .intro-cards .card {
-    background-color: #fff;
+    background-color: var(--card-bg);
     padding: 30px;
     border-radius: 10px;
     box-shadow: 0 4px 15px rgba(0,0,0,0.08);
     flex: 1;
     min-width: 280px;
     max-width: 350px;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
 }
 
 .intro-cards .card:hover {
@@ -269,13 +326,13 @@ header .container {
 }
 
 .product-item {
-    background-color: #fff;
+    background-color: var(--card-bg);
     border-radius: 10px;
     overflow: hidden;
     box-shadow: 0 4px 15px rgba(0,0,0,0.08);
     text-align: center;
     padding-bottom: 20px;
-    transition: transform 0.3s ease;
+    transition: transform 0.3s ease, background-color 0.3s ease;
 }
 
 .product-item:hover {
@@ -298,7 +355,7 @@ header .container {
 .product-item p {
     padding: 0 15px;
     font-size: 0.95em;
-    color: #555;
+    color: var(--paragraph-color);
 }
 
 
@@ -350,10 +407,11 @@ header .container {
 .about-values {
     flex: 1;
     min-width: 250px;
-    background-color: var(--bg-light);
+    background-color: var(--card-bg);
     padding: 30px;
     border-radius: 10px;
     box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+    transition: background-color 0.3s ease;
 }
 
 .about-values h3 {
@@ -383,11 +441,11 @@ header .container {
 }
 
 .product-card {
-    background-color: #fff;
+    background-color: var(--card-bg);
     border-radius: 10px;
     box-shadow: 0 5px 20px rgba(0,0,0,0.1);
     overflow: hidden;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
     display: flex;
     flex-direction: column;
 }
@@ -412,7 +470,7 @@ header .container {
 .product-card p {
     padding: 0 20px 15px;
     flex-grow: 1;
-    color: #444;
+    color: var(--paragraph-color);
 }
 
 .product-card ul {
@@ -489,12 +547,12 @@ header .container {
 
 .social-media-contact a {
     display: inline-block;
-    background-color: var(--bg-light);
+    background-color: var(--card-bg);
     padding: 10px 20px;
     border-radius: 5px;
     margin-right: 10px;
     margin-bottom: 10px;
-    color: var(--dark-text);
+    color: var(--paragraph-color);
     font-weight: 500;
     transition: background-color 0.3s ease;
 }
@@ -512,10 +570,11 @@ header .container {
 .contact-form {
     flex: 1.5;
     min-width: 350px;
-    background-color: var(--bg-light);
+    background-color: var(--card-bg);
     padding: 40px;
     border-radius: 10px;
     box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+    transition: background-color 0.3s ease;
 }
 
 .contact-form h2 {
@@ -533,7 +592,7 @@ header .container {
     display: block;
     margin-bottom: 8px;
     font-weight: 600;
-    color: var(--dark-text);
+    color: var(--heading-color);
 }
 
 .contact-form input[type="text"],
@@ -545,8 +604,9 @@ header .container {
     border-radius: 5px;
     font-family: var(--font-family);
     font-size: 1em;
-    background-color: #fff;
-    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    background-color: var(--body-bg);
+    color: var(--heading-color);
+    transition: border-color 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease, color 0.3s ease;
 }
 
 .contact-form input[type="text"]:focus,
@@ -604,10 +664,11 @@ header .container {
 
 /* Footer */
 footer {
-    background-color: var(--bg-dark);
+    background-color: var(--footer-bg);
     color: var(--light-text);
     padding: 60px 0 20px;
     margin-top: 50px;
+    transition: background-color 0.3s ease;
 }
 
 .footer-content {
@@ -707,18 +768,24 @@ footer ul li a:hover {
     .menu-toggle {
         display: block;
     }
+    
+    .main-nav {
+        /* Tambahkan posisi relatif agar .nav-list dapat diposisikan dengan benar */
+        position: relative;
+    }
 
     .main-nav .nav-list {
         display: none;
         flex-direction: column;
         width: 100%;
         position: absolute;
-        top: 80px; /* Adjust based on header height */
+        top: 100%; /* Menempatkan menu tepat di bawah header */
         left: 0;
-        background-color: #fff;
+        background-color: var(--nav-bg);
         box-shadow: 0 5px 10px rgba(0,0,0,0.1);
         padding: 20px 0;
         border-top: 1px solid var(--border-color);
+        z-index: 999; /* Pastikan menu berada di atas konten lain */
     }
 
     .main-nav .nav-list.active {
@@ -740,6 +807,19 @@ footer ul li a:hover {
         font-size: 1.1em;
     }
 
+    .theme-toggle {
+        order: 1; /* Posisikan toggle di sebelah kanan, di antara logo dan menu-toggle */
+        margin-left: auto;
+    }
+
+    .menu-toggle {
+        order: 2; /* Posisikan menu-toggle di paling kanan */
+    }
+    
+    header .container .logo {
+        order: 0; /* Pastikan logo di kiri */
+    }
+
     .hero-section h1 {
         font-size: 2.2em;
     }
@@ -759,35 +839,40 @@ footer ul li a:hover {
 
 @media (max-width: 480px) {
     .logo {
-        font-size: 1.5em;
+        font-size: 1.3em; /* Mengurangi ukuran font logo */
     }
     .logo img {
-        height: 40px;
+        height: 35px; /* Mengurangi ukuran gambar logo */
     }
 
     .hero-section h1 {
-        font-size: 1.8em;
+        font-size: 1.7em; /* Mengurangi ukuran font h1 */
     }
     .hero-section p {
-        font-size: 1em;
+        font-size: 0.9em; /* Mengurangi ukuran font paragraf */
     }
+    
     h2 {
-        font-size: 1.5em;
+        font-size: 1.6em; /* Mengurangi ukuran font h2 */
     }
+    
     .intro-cards .card {
-        padding: 20px;
+        padding: 15px; /* Mengurangi padding pada kartu intro */
     }
     .intro-cards .card h3 {
-        font-size: 1.3em;
+        font-size: 1.2em; /* Mengurangi ukuran font h3 pada kartu */
     }
+
     .contact-form {
-        padding: 30px;
+        padding: 20px; /* Mengurangi padding pada form kontak */
     }
+    
     .contact-form h2 {
-        font-size: 1.8em;
+        font-size: 1.6em; /* Mengurangi ukuran font h2 pada form */
     }
+    
     .social-media-contact a {
-        font-size: 0.9em;
-        padding: 8px 15px;
+        font-size: 0.8em; /* Mengurangi ukuran font pada tombol sosial media */
+        padding: 6px 12px; /* Mengurangi padding tombol sosial media */
     }
 }
