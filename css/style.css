@@ -245,7 +245,7 @@ header .container {
 
 /* Hero Section */
 .hero-section {
-    background: url('../images/utama.png') no-repeat center center/cover; /* Ganti dengan gambar background yang sesuai */
+    background: url('../images/dariatas.jpeg') no-repeat center center/cover; /* Ganti dengan gambar background yang sesuai */
     color: var(--light-text);
     text-align: center;
     padding: 150px 0;
@@ -361,7 +361,7 @@ header .container {
 
 /* Page Hero (for About, Products, Contact) */
 .page-hero {
-    background: url('../images/utama.png') no-repeat center center/cover; /* Ganti 'about-hero-bg.jpg' dengan nama file gambar Anda */
+    background: url('../images/dariatas3.jpeg') no-repeat center center/cover; /* Ganti 'about-hero-bg.jpg' dengan nama file gambar Anda */
     color: var(--light-text);
     padding: 80px 0;
     text-align: center;
